@@ -20,9 +20,10 @@ export default {
 </script>
 
 <style media="screen">
-@media screen and (max-width: 992px) {
-  #thumbnails {
-     width: 70%;
-  }
+.home {
+  top: auto;
+}
+@media screen and (max-width: 500px) {
+
 }
 </style>

@@ -1,17 +1,12 @@
 <template>
   <div class="container">
     <form class="form-signin" @submit ="onSubmit">
-      <h2 class="form-signin-heading">Please sign in</h2>
-      <label for="inputEmail" class="sr-only" >Email address</label>
-      <input type="email" v-model="uid" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" v-model="password" id="inputPassword" class="form-control" placeholder="Password" required>
-      <div class="checkbox">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <input type="password" v-model="password" id="inputPassword" class="form-control" placeholder="Seed value" required>
+      <div class="checkbox"></div>
+      <button class="btn btn-lg btn-secondary btn-block" type="submit" onclick="alert('시드값이 입력되었습니다.')">Sign in</button>
+
+
     </form>
   </div> <!-- /container -->
 </template>
@@ -20,13 +15,17 @@
 export default {
   name : 'Login',
   data : () => ({
-    uid : '',
     password : ''
   }),
+  computed :{
+    seed (){
+      return this.$store.state.seed
+    }
+  },
   methods: {
     onSubmit(){
-      console.log(this.uid);
       console.log(this.password);
+
     }
   }
 }
