@@ -4,14 +4,16 @@
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" v-model="password" id="inputPassword" class="form-control" placeholder="Seed value" required>
       <div class="checkbox"></div>
-      <button class="btn btn-lg btn-secondary btn-block" type="submit" onclick="alert('시드값이 입력되었습니다.')">Sign in</button>
-
+      <button class="btn btn-lg btn-secondary btn-block" type="submit" onclick="alert('시드값이 입력되었습니다.')">
+        Sign in</button>
 
     </form>
   </div> <!-- /container -->
 </template>
 
 <script>
+
+
 export default {
   name : 'Login',
   data : () => ({
@@ -25,6 +27,10 @@ export default {
   methods: {
     onSubmit(){
       console.log(this.password);
+
+      /* this.$router.replace(this.$route ='/test') */
+      /* router.push({ path: 'test' }) */
+      this.$router.push('/test')
 
     }
   }

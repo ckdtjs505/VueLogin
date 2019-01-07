@@ -14,8 +14,10 @@
           </h5>
         </div>
         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-          <div class="card-body">
-            seed : a06f1b4e168034c6d44be57e8e4
+          <div v-show="!isset" class="card-body">
+            <div >
+              seed : {{posts.latestAddress}}
+            </div>
           </div>
         </div>
       </div>
@@ -29,7 +31,7 @@
         </div>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
           <div class="card-body">
-           잔액이 나타납니다.
+          잔액 : {{posts.balance}}
           </div>
         </div>
       </div>
@@ -43,9 +45,7 @@
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
           <div class="card-body">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt
-            aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat
-            craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+            hello
           </div>
         </div>
       </div>
@@ -60,7 +60,40 @@
 </template>
 
 <script>
-export default {}
+const IOTA = require('iota.lib.js')
+const iota = new IOTA({provider: 'http://192.168.10.48:24265'});
+const Converter =  require("iota.lib.js/lib/crypto/converter/converter.js");
+
+const sendSeed = 'BTRWCYJIRJTYGZET9FKGZBLPBUQVBWODKBNCIA9H9ZJBPPYGCITOGNVQHZTGOCO9E9VQSMAAZTJUQWZLC';
+const sendAddr = 'ZEZJQVCZNSWWFJ9SNDQZPSVTTOKFJVQIRHJGFSLL9XCVULUSGHRTBCSDRBAVNIJNJOCOWRDGQYWGKZYCX';
+const recvSeed = 'JCBMBVUCRPWNSNPVAAUISIFXQB9AZXZVAQBIMZLJSCBUCPFDCHHWLREUVKQVKJMTZUZJZDUXKFEPLSSVE';
+const recvAddr = 'DOGCYVLJZWRZQSOWEHJ9LKF9KILSKWUZGQISCNDLSEQAWCM9OMKYAIXXGVHWBV9EKDNPKOXDI9FZWZFGB';
+
+export default {
+  name: 'test',
+  data: function () {
+    return {
+      posts: [],
+    }
+  },
+  computed : {
+    isset : function()
+    {
+        iota.api.getAccountData(recvSeed, (error, accountData) => {
+          if (error) {
+            console.log(error);
+          } else {
+            /* console.log(JSON.stringify(accountData)); */
+            console.log(accountData.latestAddress);
+            this.posts = accountData;
+          }
+      })
+    },
+  },
+  methods : {
+
+  }
+}
 </script>
 
 <style lang="css" scoped>
