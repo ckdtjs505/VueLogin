@@ -2,10 +2,9 @@
   <div class="container">
     <form class="form-signin" @submit ="onSubmit">
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" v-model="password" id="inputPassword" class="form-control" placeholder="Seed value" required>
-      <div class="checkbox"></div>
-      <button class="btn btn-lg btn-secondary btn-block" type="submit" onclick="alert('시드값이 입력되었습니다.')">
-        Sign in</button>
+      <input type="password" v-model="password" id="inputPassword" class="form-control"
+                placeholder="Seed값 입력 최소(4~60 알파벳 대문자)" required>
+      <button class="btn btn-lg btn-secondary btn-block" type="submit">Sign in</button>
 
     </form>
   </div> <!-- /container -->
@@ -15,26 +14,23 @@
 
 
 export default {
-  name : 'Login',
-  data : () => ({
-    password : ''
+  name: "Login",
+  data: () => ({
+    password : ""
   }),
-  computed :{
-    seed (){
-      return this.$store.state.seed
-    }
-  },
   methods: {
-    onSubmit(){
-      console.log(this.password);
-
-      /* this.$router.replace(this.$route ='/test') */
-      /* router.push({ path: 'test' }) */
-      this.$router.push('/test')
-
+    onSubmit() {
+      if(!this.password.match(/^[A-Z9]{4,60}/)){
+        alert("값을 잘못 입력했습니다.");
+      }
+      else{
+        this.$router.push('/test');
+        this.$store.state.isAuth = true;
+      }
+      console.log(this.$store.state.isAuth);
     }
   }
-}
+};
 </script>
 
 <style lang="css" scoped>

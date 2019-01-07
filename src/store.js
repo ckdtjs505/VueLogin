@@ -5,14 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    seed: '' ,
-    isAuth:false
+    seed : "",
+    isAuth : false
     },
-  mutations: {
-    setSeed : function (state, payload){
-      state.seed = payload;
-    }
-
-    },
+  mutations: {},
   actions: {}
 });

@@ -1,27 +1,21 @@
 <template>
 <div id="app">
-  <nav class="navbar navbar-expand-lg navbar-dark  bg-dark ">
-    <router-link to="/"><a class="navbar-brand" href="#">Home</a></router-link>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-
-          <router-link to="/about" class="nav-link">About</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link to="/test" class="nav-link">test</router-link>
-        </li>
-
-      </ul>
-    </div>
-  </nav>
+  <Navigation/>
   <router-view id="view"/>
 </div>
 </template>
 
+<script type="text/javascript">
+import Navigation from "@/components/Navigation.vue";
+
+export default {
+  name: "home",
+  components: {
+    Navigation
+  }
+};
+
+</script>
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;

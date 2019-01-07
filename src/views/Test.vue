@@ -4,8 +4,9 @@
     <h1 class="display-4">TEST 님 </h1>
     <p class="lead">IOTA DAG 기반 계좌입니다</p>
     <hr class="my-4">
-    <div id="accordion">
-      <div class="card">
+    <div id="insertpage">
+
+      <div class="card" id = "acount_view">
         <div class="card-header" id="headingOne">
           <h5 class="mb-0">
             <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -21,9 +22,10 @@
           </div>
         </div>
       </div>
-      <div class="card">
+
+      <div class="card" id ="balance_view">
         <div class="card-header" id="headingTwo">
-          <h5 class="mb-0">
+          <h5 class="mb-0" >
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
               <strong  class ="str">잔액</strong>
             </button>
@@ -35,7 +37,8 @@
           </div>
         </div>
       </div>
-      <div class="card">
+
+      <div class="card" id ="Precautions_view">
         <div class="card-header" id="headingThree">
           <h5 class="mb-0">
             <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -45,7 +48,7 @@
         </div>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
           <div class="card-body">
-            hello
+            주의사항은 여기에 입력해 주세요
           </div>
         </div>
       </div>
@@ -53,7 +56,7 @@
 
     </div>
     <p class="lead">
-      <a class="btn btn-dark btn-lg" href="#" role="button">Logout</a>
+      <a class="btn btn-dark btn-lg" href="#" role="button" @click="backpage">Logout</a>
     </p>
   </div>
 </div>
@@ -88,10 +91,14 @@ export default {
             this.posts = accountData;
           }
       })
-    },
+    }
   },
   methods : {
-
+    backpage : function()
+    {
+      this.$router.go(-1);
+      this.$store.state.isAuth = false;
+    }
   }
 }
 </script>
