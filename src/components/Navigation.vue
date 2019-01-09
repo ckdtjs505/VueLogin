@@ -1,5 +1,5 @@
 <template lang="html">
-  <nav class="navbar navbar-expand-lg navbar-dark  bg-dark ">
+  <nav class="navbar navbar-expand-lg navbar-dark  bg-dark " style="text-align:right">
     <router-link to="/"><a class="navbar-brand" href="#">Home</a></router-link>
 
       <button  class="navbar-toggler" v-show="this.$store.state.isAuth" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -10,11 +10,11 @@
         <ul class="navbar-nav" v-show="this.$store.state.isAuth">
 
           <li class="nav-item" id="MyPage">
-            <router-link to="/test" class="nav-link">MyPage</router-link>
+            <router-link to="/Mypage" class="nav-link">MyPage</router-link>
           </li>
 
-          <li class="nav-item" id="about_page">
-            <a class="nav-link" @click="backpage">Logout</a>
+          <li class="nav-item" id="about_page" @click="logOut">
+            <router-link to="/" class="nav-link"  >Logout</router-link>
           </li>
 
         </ul>
@@ -25,15 +25,10 @@
 
 <script>
 export default {
-  methods : {
-    backpage : function()
-    {
-      this.$router.go(-1);
+  methods: {
+    logOut: function() {
       this.$store.state.isAuth = false;
     }
   }
-}
+};
 </script>
-
-<style lang="css" scoped>
-</style>

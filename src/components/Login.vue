@@ -1,34 +1,43 @@
 <template>
-  <div class="container">
-    <form class="form-signin" @submit ="onSubmit">
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" v-model="password" id="inputPassword" class="form-control"
-                placeholder="Seed값 입력 최소(4~60 알파벳 대문자)" required>
-      <button class="btn btn-lg btn-secondary btn-block" type="submit">Sign in</button>
+<div class="container">
+  <form class="form-signin" @submit="login">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" v-model="password" id="inputPassword" class="form-control" placeholder="Seed값 입력 최소(4~60 알파벳 대문자)" required>
+    <button class="btn btn-lg btn-secondary btn-block" type="submit">Sign in</button>
 
-    </form>
-  </div> <!-- /container -->
+  </form>
+</div> <!-- /container -->
 </template>
 
 <script>
-
+const IOTA = require("iota.lib.js");
+const iota = new IOTA({ provider: " http://192.168.10.48:24265 " });
 
 export default {
   name: "Login",
   data: () => ({
-    password : ""
+    password: ""
   }),
   methods: {
-    onSubmit() {
-      if(!this.password.match(/^[A-Z9]{4,60}/)){
+    login(evt) {
+      evt.preventDefault();
+      if (!this.password.match(/^[A-Z9]{4,60}/)) {
         alert("값을 잘못 입력했습니다.");
+      } else {
+        iota.api.getAccountData(this.password, (error, accountData) => {
+          if (error) {
+            console.log("error");
+          } else {
+            console.log(this.password);
+            console.log(JSON.stringify(accountData));
+            console.log(this.$store.state.isAuth);
+            this.$store.state.seed = accountData;
+            this.$router.push("/mypage");
+            this.$store.state.isAuth = true;
+          }
+        });
       }
-      else{
-        this.$router.push('/test');
-        this.$store.state.isAuth = true;
-      }
-      console.log(this.$store.state.isAuth);
-    }
+    } // 여기까지
   }
 };
 </script>

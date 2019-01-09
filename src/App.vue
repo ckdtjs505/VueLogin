@@ -1,7 +1,7 @@
 <template>
 <div id="app">
-  <Navigation/>
-  <router-view id="view"/>
+  <Navigation />
+  <router-view id="view" />
 </div>
 </template>
 
@@ -9,13 +9,13 @@
 import Navigation from "@/components/Navigation.vue";
 
 export default {
-  name: "home",
+  name: "app",
   components: {
     Navigation
   }
 };
-
 </script>
+
 <style>
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -23,7 +23,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
 }
 
 #nav {
@@ -40,6 +40,6 @@ export default {
 }
 
 #view {
-    margin-top: 90px;
+  margin-top: 90px;
 }
 </style>
